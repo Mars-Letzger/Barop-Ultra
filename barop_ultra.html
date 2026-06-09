@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barop Ultra 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-dark: #3B6D11;
+    --green-mid: #639922;
+    --green-light: #EAF3DE;
+    --amber: #BA7517;
+    --amber-light: #FAEEDA;
+    --gray-dark: #2C2C2A;
+    --gray-mid: #5F5E5A;
+    --gray-light: #F1EFE8;
+    --white: #ffffff;
+  }
+
+  body {
+    font-family: 'Georgia', serif;
+    background: var(--white);
+    color: var(--gray-dark);
+    line-height: 1.6;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--green-dark);
+    color: var(--white);
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: var(--green-mid);
+    opacity: 0.25;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -40px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: var(--green-mid);
+    opacity: 0.15;
+  }
+  .hero-eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #9FE1CB;
+    margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    font-weight: normal;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: #9FE1CB;
+  }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: #C0DD97;
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-date {
+    display: inline-block;
+    margin-top: 2rem;
+    background: var(--amber);
+    color: var(--white);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    padding: 0.5rem 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 4rem 2rem;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  section + section {
+    border-top: 1px solid #D3D1C7;
+  }
+
+  .section-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 1.25rem;
+  }
+  h2 {
+    font-size: 2rem;
+    font-weight: normal;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+    color: var(--gray-dark);
+  }
+  p {
+    font-size: 1.05rem;
+    color: #444441;
+    margin-bottom: 1rem;
+  }
+  p:last-child { margin-bottom: 0; }
+
+  /* INFO GRID */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: #D3D1C7;
+    border: 1px solid #D3D1C7;
+    margin-top: 2rem;
+  }
+  .info-cell {
+    background: var(--white);
+    padding: 1.5rem 1.25rem;
+  }
+  .info-cell .label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 0.4rem;
+  }
+  .info-cell .value {
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: var(--gray-dark);
+  }
+
+  /* RULE CARDS */
+  .rules-list {
+    list-style: none;
+    margin-top: 2rem;
+    display: grid;
+    gap: 1px;
+    background: #D3D1C7;
+    border: 1px solid #D3D1C7;
+  }
+  .rules-list li {
+    background: var(--white);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+  .rule-num {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: var(--green-mid);
+    padding-top: 0.2rem;
+    min-width: 24px;
+  }
+  .rule-text {
+    font-size: 1rem;
+    color: #444441;
+    line-height: 1.5;
+  }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--amber-light);
+    border-left: 3px solid var(--amber);
+    padding: 1.25rem 1.5rem;
+    margin-top: 2rem;
+    font-size: 0.95rem;
+    color: #633806;
+    border-radius: 0;
+  }
+
+  /* FAQ */
+  .faq-item {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid #D3D1C7;
+  }
+  .faq-item:first-child { border-top: 1px solid #D3D1C7; }
+  .faq-q {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--gray-dark);
+  }
+  .faq-a {
+    font-size: 0.95rem;
+    color: #5F5E5A;
+    margin: 0;
+  }
+
+  /* ANMELDUNG */
+  .anmeldung-box {
+    background: var(--green-light);
+    border: 1px solid #C0DD97;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .anmeldung-box h3 {
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-bottom: 0.75rem;
+  }
+  .anmeldung-box p {
+    color: #3B6D11;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+  .btn {
+    display: inline-block;
+    background: var(--green-dark);
+    color: var(--white);
+    padding: 0.85rem 2.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .btn:hover { background: var(--green-mid); }
+
+  /* FOOTER */
+  footer {
+    background: var(--gray-dark);
+    color: #888780;
+    text-align: center;
+    padding: 2.5rem 1rem;
+    font-size: 0.85rem;
+    font-family: 'Courier New', monospace;
+  }
+  footer a { color: #9FE1CB; text-decoration: none; }
+  footer p + p { margin-top: 0.5rem; }
+
+  /* IMPRESSUM */
+  .impressum {
+    padding: 3rem 2rem;
+    max-width: 760px;
+    margin: 0 auto;
+    border-top: 1px solid #D3D1C7;
+  }
+  .impressum h2 { font-size: 1.25rem; margin-bottom: 1rem; }
+  .impressum p { font-size: 0.9rem; color: var(--gray-mid); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <p class="hero-eyebrow">Barop · Dortmund · 2026</p>
+  <h1>Barop<br><em>Ultra</em></h1>
+  <p class="hero-sub">Ein Backyard Ultra. In der Nachbarschaft. Für alle, die aufhören wollen – aber dann doch nicht.</p>
+  <span class="hero-date">13. September 2026 · 12:00 Uhr</span>
+</header>
+
+<!-- WAS IST DAS -->
+<section>
+  <p class="section-label">Das Konzept</p>
+  <h2>Was ist ein Backyard Ultra?</h2>
+  <p>Beim Backyard Ultra gibt es keine feste Distanz. Stattdessen startet jede Stunde ein neuer Loop – und wer die Runde nicht rechtzeitig schafft oder aufgibt, scheidet aus. Gewonnen hat am Ende genau eine Person: die letzte, die eine vollständige Runde beendet hat.</p>
+  <p>Keine Uhr auf die man schaut, kein Ziel am Horizont. Nur die Frage: <em>Noch eine Runde?</em></p>
+
+  <div class="info-grid">
+    <div class="info-cell">
+      <div class="label">Rundenlänge</div>
+      <div class="value">6,706 km</div>
+    </div>
+    <div class="info-cell">
+      <div class="label">Start</div>
+      <div class="value">Jede volle Stunde</div>
+    </div>
+    <div class="info-cell">
+      <div class="label">Erster Start</div>
+      <div class="value">13. Sept., 12:00 Uhr</div>
+    </div>
+    <div class="info-cell">
+      <div class="label">Ende</div>
+      <div class="value">Wenn nur noch einer läuft</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRECKE -->
+<section>
+  <p class="section-label">Strecke & Ort</p>
+  <h2>Wo geht's lang?</h2>
+  <p>Der Start- und Zielpunkt befindet sich in [Adresse eintragen]. Die Strecke führt durch [Streckenbeschreibung eintragen – z.&nbsp;B. „die Grünanlage am Fischteich, an der Grundschule vorbei und zurück durch die Goethestraße"].</p>
+  <p>Streckenmarkierungen sind ausgeschildert. Eine Karte wird rechtzeitig vor dem Event hier veröffentlicht.</p>
+
+  <div class="callout">
+    💡 Für die Runde hast du maximal <strong>60 Minuten</strong> Zeit. Wer nicht im Startbereich steht, wenn die neue Runde beginnt, ist raus.
+  </div>
+</section>
+
+<!-- REGELN -->
+<section>
+  <p class="section-label">Spielregeln</p>
+  <h2>So funktioniert's</h2>
+  <ul class="rules-list">
+    <li><span class="rule-num">01</span><span class="rule-text">Jede Stunde startet eine neue Runde – pünktlich zum Glockenschlag.</span></li>
+    <li><span class="rule-num">02</span><span class="rule-text">Die Runde ist genau 6,706 km lang. Kürzer zählt nicht.</span></li>
+    <li><span class="rule-num">03</span><span class="rule-text">Wer eine Runde nicht abschließt oder nicht rechtzeitig am Start steht, scheidet aus.</span></li>
+    <li><span class="rule-num">04</span><span class="rule-text">Zwischen den Runden darf geschlafen, gegessen und gejammert werden.</span></li>
+    <li><span class="rule-num">05</span><span class="rule-text">Gewonnen hat, wer als Letzter eine vollständige Runde beendet.</span></li>
+    <li><span class="rule-num">06</span><span class="rule-text">Keine Musik aus Lautsprechern auf der Strecke – die Nachbarschaft schläft irgendwann.</span></li>
+  </ul>
+</section>
+
+<!-- FAQ -->
+<section>
+  <p class="section-label">Fragen & Antworten</p>
+  <h2>Was ich noch wissen sollte</h2>
+
+  <div class="faq-item">
+    <p class="faq-q">Muss ich ein Profi sein?</p>
+    <p class="faq-a">Absolut nicht. Wer einen entspannten Halbmarathon laufen kann, kann diese Challenge angehen. Das Tempo entscheidest du selbst – solange du unter 60 Minuten pro Runde bleibst.</p>
+  </div>
+  <div class="faq-item">
+    <p class="faq-q">Was passiert, wenn ich aufhöre?</p>
+    <p class="faq-a">Nichts Schlimmes. Du wirst von der Nachbarschaft angefeuert, bekommst etwas zu essen und kannst zusehen, wie die anderen weitermachen.</p>
+  </div>
+  <div class="faq-item">
+    <p class="faq-q">Was soll ich mitbringen?</p>
+    <p class="faq-a">Laufschuhe, Wettergerechte Kleidung, ausreichend Snacks und Getränke für dich, und gute Laune. Eine Stirnlampe für den Fall, dass es dunkel wird.</p>
+  </div>
+  <div class="faq-item">
+    <p class="faq-q">Gibt es Verpflegung?</p>
+    <p class="faq-a">Am Start/Ziel-Bereich gibt es Wasser und eine kleine Lauterstation. Für alles andere ist jeder selbst verantwortlich.</p>
+  </div>
+  <div class="faq-item">
+    <p class="faq-q">Was kostet die Teilnahme?</p>
+    <p class="faq-a">Das Event ist kostenlos. Eine Anmeldung ist trotzdem nötig, damit wir planen können.</p>
+  </div>
+</section>
+
+<!-- ANMELDUNG -->
+<section>
+  <p class="section-label">Mitmachen</p>
+  <h2>Anmeldung</h2>
+  <p>Schick eine Mail mit deinem Namen und ob du alleine oder im Team antrittst. Weitere Infos kriegst du dann per Mail zurück.</p>
+
+  <div class="anmeldung-box">
+    <h3>Ich bin dabei.</h3>
+    <p>Schreib Lars eine kurze Mail – Vorname, Nachname, fertig.</p>
+    <a href="mailto:[DEINE-EMAIL@BEISPIEL.DE]" class="btn">Jetzt anmelden</a>
+  </div>
+</section>
+
+<!-- IMPRESSUM -->
+<div class="impressum">
+  <h2>Impressum</h2>
+  <p>Verantwortlich für den Inhalt dieser Website:</p>
+  <p>Lars [Nachname]<br>
+  [Straße und Hausnummer]<br>
+  44379 Dortmund<br>
+  E-Mail: [deine@email.de]</p>
+  <p style="margin-top: 1rem;">Diese Website ist ein privates, nicht-kommerzielles Angebot zur Organisation einer Nachbarschaftsveranstaltung. Es werden keine personenbezogenen Daten gespeichert oder weitergegeben.</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Barop Ultra · 13. September 2026</p>
+  <p>Fragen? <a href="mailto:[DEINE-EMAIL@BEISPIEL.DE]">Schreib Lars</a></p>
+</footer>
+
+</body>
+</html>
